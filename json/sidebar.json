@@ -1,0 +1,19 @@
+[
+    {
+        "href": "",
+        "icon" : "home",
+        "name" : "Anasayfa"
+    },
+    {
+        "icon": "widgets",
+        "name": "Araçlar",
+        "subitems": [
+            {
+                "href" : "",
+                "name" : "Sub Araçlar 1"
+            }
+
+        ]
+    }
+
+]
