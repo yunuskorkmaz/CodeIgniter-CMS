@@ -37,7 +37,7 @@
 
                 <?php
 
-                //TODO yap
+                
                 
                 $json = file_get_contents(base_url()."json/sidebar.json");
 
