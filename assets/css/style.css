@@ -2479,7 +2479,8 @@ section.content {
   border-radius: 2px;
   border: none;
   font-size: 13px;
-  outline: none; }
+  outline: none;
+}
   .btn:not(.btn-link):not(.btn-circle):hover {
     outline: none; }
   .btn:not(.btn-link):not(.btn-circle) i {
@@ -4521,7 +4522,9 @@ section.content {
 .table tbody tr td, .table tbody tr th {
   padding: 10px;
   border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee; }
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
 
 .table tbody tr.primary td, .table tbody tr.primary th {
   background-color: #1f91f3;
@@ -7716,3 +7719,21 @@ html.ie11 .dropdown-menu ul.menu li a {
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
 
+a.btn{
+display: inline-flex;
+  justify-content: center;
+  align-items: center;;
+}
+a.btn span{
+
+  padding-left: 3px;
+
+}
+a.btn i{
+
+  top: 0px!important;
+}
+
+.info-container{
+  margin-top: 15px;
+}

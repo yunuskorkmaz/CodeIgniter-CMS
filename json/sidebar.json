@@ -5,6 +5,11 @@
         "name" : "Anasayfa"
     },
     {
+        "icon": "people",
+        "name": "Kullanıcılar",
+        "href": "User/"
+    },
+    {
         "icon": "widgets",
         "name": "Araçlar",
         "subitems": [

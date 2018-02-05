@@ -63,6 +63,17 @@ class CI_Controller {
 	 *
 	 * @return	void
 	 */
+
+    public function template($view = "" , $data = null)
+    {
+
+        $this->load->view("_theme/StartView",$data);
+        if($view != ""){
+            $this->load->view($view,$data);
+        }
+        $this->load->view("_theme/footer");
+	}
+
 	public function __construct()
 	{
 		self::$instance =& $this;
