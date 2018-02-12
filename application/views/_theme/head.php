@@ -28,6 +28,10 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>assets/css/themes/all-themes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
+    <!-- Jquery Core Js -->
+    <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+
 </head>
 
 <body class="theme-blue-grey">

@@ -70,13 +70,15 @@
                             ';
 
                     if (isset($item->subitems)){
+                        echo  '<ul class="ml-menu">';
                         foreach ($item->subitems as $subitem) {
-                            echo '<ul class="ml-menu">
-                        <li>
+                            echo '
+                            <li>
                             <a href="'.base_url().$subitem->href.'" >
                                 <span>'.$subitem->name.'</span>
-                            </a></li></ul>';
+                            </a></li>';
                         }
+                        echo '</ul>';
                     }
 
 

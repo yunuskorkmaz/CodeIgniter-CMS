@@ -10,12 +10,20 @@
         "href": "User/"
     },
     {
-        "icon": "widgets",
-        "name": "Araçlar",
-        "subitems": [
+        "icon" : "home",
+        "name" : "Ayarlar",
+        "subitems" : [
             {
-                "href" : "",
-                "name" : "Sub Araçlar 1"
+                "href": "settings/site_setting",
+                "name" : "Site Ayarları"
+            },
+            {
+                "href" : "settings/contact",
+                "name" : "İletişim Bilgileri"
+            },
+            {
+                "href" : "settings/social",
+                "name" : "Sosyal Ağ Bilgileri"
             }
 
         ]
