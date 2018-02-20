@@ -27,6 +27,25 @@
             }
 
         ]
+    },
+    {
+        "icon" : "home",
+        "name" : "Hakkımızda Ayarları",
+        "href" : "aboutpage/"
+    },
+    {
+        "icon" : "home",
+        "name" : "Ürünler",
+        "subitems" : [
+            {
+                "href" : "product/",
+                "name" : "Ürün Listesi"
+            },
+            {
+                "href" : "product/addProduct",
+                "name" : "Ürün Ekle"
+            }
+        ]
     }
 
 ]

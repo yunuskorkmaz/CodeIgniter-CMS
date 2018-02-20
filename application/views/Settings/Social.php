@@ -86,6 +86,7 @@
                             $icons[] = "mail";
                             $icons[] = "whatsapp";
                             $icons[] = "instagram";
+                            $icons[] = "disqus";
                         ?>
                         <?php foreach ($icons as $icon): ?>
                             <div class="col-sm-6 col-md-6 col-lg-6">
@@ -117,8 +118,8 @@
                         swal({icon:'success',buttons:false});
                         window.location.href = $(this).attr("href");
                     }
-                });
-
+                }
+            )
             })
         });
 </script>

@@ -24,12 +24,27 @@ class Settings_model extends CI_Model
     public $site_haftaici   = "haftaici_calisma_saati";
     public $site_haftasonu  = "haftasonu_calisma_saati";
 
+    public $site_abouttitle = "about_title";
+    public $site_abouttext = "about_text";
+
+    public function aboutpattern(){
+        return  array(
+            "abouttitle" =>  $this->site_abouttitle,
+            "abouttext" => $this->site_abouttext
+        );
+    }
 
     function __construct()
     {
         parent::__construct();
         $this->load->database();
+
+
     }
+
+
+
+
 
     public  function delete_social_network($id){
         $this->db->delete('social_network', array('id' => $id));
@@ -61,6 +76,21 @@ class Settings_model extends CI_Model
             $this->db->where("id",$id);
             $this->db->update('social_network');
         }
+    }
+
+    public function get($columnarray){
+        $result = array();
+
+        foreach ($columnarray as $key => $value) {
+            $row =  $this->db
+                    ->select("*")
+                    ->from("settings")
+                    ->where($this->option_attr,$value)
+                    ->get()->row();
+
+            $result[$key] = $row->value;
+        }
+        return $result;
     }
 
     public function get_contact_info(){
