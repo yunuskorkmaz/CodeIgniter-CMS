@@ -131,4 +131,91 @@ class Settings extends CI_Controller
 
 
     }
+
+    public function referance(){
+
+        $this->load->model("Settings_model","ayar");
+        if($_POST){
+            $postadata =  array(
+                "name" => trim($_POST["name"]),
+                "category_id" => $_POST["kategori"]
+            );
+            $this->ayar->addReferance($postadata);
+        }
+        $this->load->model("Category_model","kategori");
+
+        $data["category_all"] = $this->kategori->get_category_main();
+
+
+       $data["ref"]  = $this->ayar->referans();
+
+        $this->template("Settings/Referance",$data);
+
+    }
+
+    public function refedit($id){
+        if(!empty($id) or $id != ""){
+            $this->load->model("Settings_model","setting");
+            if($_POST){
+                $postadata =  array(
+                    "name" => trim($_POST["name"]),
+                    "category_id" => $_POST["kategori"]
+                );
+                $this->setting->editReferance($postadata,$id);
+
+            }
+
+            $data["ref"] = $this->setting->get_ref($id);
+
+            $this->load->model("Category_model","kategori");
+
+            $data["category_all"] = $this->kategori->get_category_main();
+
+
+            $this->template("Settings/EditRef",$data);
+        }
+        else{
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
+    }
+
+    public  function  refdelete($id){
+        if(!empty($id) or $id != ""){
+            $this->load->model("Settings_model","ayar");
+            $this->ayar->refdelete($id);
+        }
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
+    public function mainpage(){
+        $this->load->model("Settings_model","ayar");
+        $data = $this->ayar->getmainpage();
+        $this->template("Settings/MainPageSettings",$data);
+    }
+
+    public  function editTrendText(){
+        if($_POST){
+            $data = array(
+                "trendtitle" => trim($_POST["trendtitle"]),
+                "trendtext" => trim($_POST["trendtext"])
+            );
+            $this->load->model("Settings_model","ayar");
+            $this->ayar->editTrendText($data);
+        }
+        redirect($_SERVER["HTTP_REFERER"]);
+
+    }
+
+    public function editFooter(){
+        if($_POST){
+            $data = array(
+                "footertext" => trim($_POST["footer"]),
+
+            );
+            $this->load->model("Settings_model","ayar");
+            $this->ayar->editFooter($data);
+        }
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
+
 }

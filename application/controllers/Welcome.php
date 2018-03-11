@@ -3,16 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+    public  function  yunus(){
+        echo  "asdasd    ";
+    }
 	public function index()
 	{
-	    $this->load->model('Auth_model','auth');
-
-	    if($this->auth->CheckAuth()){
-            $this->template();
-        }
-        else{
-	        redirect('/welcome/login/');
-        }
+	    echo  "asdasd";
+	    exit();
+	    //$this->load->model('Auth_model','auth');
+//        $this->template();
+//	    if($this->auth->CheckAuth()){
+//            $this->template();
+//        }
+//        else{
+//	        redirect('/welcome/login/');
+//        }
 
 
 	}
@@ -28,11 +33,13 @@ class Welcome extends CI_Controller {
 	    unset($_SESSION["user_id"]);
 	    unset($_SESSION["name"]);
 	    unset($_SESSION["username"]);
+	    unset($_SESSION);
 	    redirect("welcome");
     }
 
 	public function Login()
     {
-        $this->load->view("_theme/Login/login");
+        echo "sadasd";
+//        $this->load->view("_theme/Login/login");
     }
 }

@@ -49,4 +49,43 @@ class User extends CI_Controller
             redirect("User/");
 
     }
+
+    public function delete($id){
+        if(!empty($id)){
+            if ($id != 1) {
+                $this->load->model("User_model", 'user');
+                $this->user->delete($id);
+
+                redirect($_SERVER["HTTP_REFERER"]);
+
+            }
+        }
+    }
+
+    public function edit($id){
+        if(!empty($id)){
+            $this->load->model("User_model","user");
+            if($_POST){
+                $postdata = array(
+                    'adSoyad' => $_POST["name"],
+                    'kadi' => $_POST["kadi"],
+                    'eposta' => $_POST["email"]
+                );
+                if(isset($_POST["pass"])){
+                    $postdata["sifre"] = $_POST["pass"];
+                }
+
+                $this->user->edit($postdata,$id);
+            }
+
+
+            $this->load->model("User_model","user");
+            $data["user"] =$this->user->get($id);
+            $this->template("User/Edit",$data);
+
+        }
+        else{
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
+    }
 }

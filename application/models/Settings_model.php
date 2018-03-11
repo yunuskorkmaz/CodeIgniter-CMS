@@ -159,4 +159,84 @@ class Settings_model extends CI_Model
 
     }
 
+    function addReferance($data){
+        $this->db->insert("referance",$data);
+    }
+
+    function referans(){
+
+
+       $referance = $this->db->select("r.id,r.name,c.name as kategori")->from("referance as r")->join("categorys as c","r.category_id =c.id")->get()->result();
+
+
+
+//            $row = array();
+//        echo '<html><body><table>';
+//            for ($i =0;$i<count($urunler);$i++){
+//
+//                if($i%count($result)-1 != 0){
+//                    echo '<tr>';
+//                }
+//
+//                foreach ($result as $item) {
+//                    echo '<td>';
+//                    if($urunler[$i]->category == $item->id){
+//                        echo $urunler[$i]->name;
+//                    }
+//                    echo '</td>';
+//                }
+//
+//                if($i%count($result)-1 != 0){
+//                    echo '<tr>';
+//                }
+//
+//            }
+//            echo '</table></body></html>'
+//            ;
+
+
+        $out = $referance;
+
+        return $out;
+    }
+
+    function editReferance($data,$id){
+        $this->db->where("id",$id)->update("referance",$data);
+    }
+
+    function get_ref($id){
+        return $this->db->where("id",$id)->get("referance")->row();
+    }
+
+    function refdelete($id){
+        $this->db->delete('referance', array('id' => $id));
+    }
+
+    function editTrendText($data){
+        foreach ($data as $key => $value){
+            $this->db->set("value",$value)->where("component",$key)->update("settings");
+        }
+    }
+
+    function getmainpage(){
+        $getdata = array(
+            "trendtitle" => "trendtitle",
+            "trendtext" => "trendtext",
+            "footertext" => "footertext"
+        );
+
+        $result = array();
+        foreach ($getdata as $key => $value){
+            $row = $this->db->where("component",$value)->get("settings")->row();
+            $result[$key] = $row->value;
+        }
+        return $result;
+    }
+    function editFooter($data){
+        foreach ($data as $key => $value){
+            $this->db->set("value",$value)->where("component",$key)->update("settings");
+        }
+    }
+
+
 }

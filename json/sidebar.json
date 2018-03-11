@@ -5,12 +5,12 @@
         "name" : "Anasayfa"
     },
     {
-        "icon": "people",
+        "icon": "person",
         "name": "Kullanıcılar",
         "href": "User/"
     },
     {
-        "icon" : "home",
+        "icon" : "settings",
         "name" : "Ayarlar",
         "subitems" : [
             {
@@ -29,21 +29,26 @@
         ]
     },
     {
-        "icon" : "home",
+        "icon" : "info",
         "name" : "Hakkımızda Ayarları",
         "href" : "aboutpage/"
     },
     {
-        "icon" : "home",
+        "icon" : "people",
+        "name" : "Referanslar",
+        "href" : "settings/referance"
+    },
+    {
+        "icon" : "shopping_cart",
         "name" : "Ürünler",
         "subitems" : [
             {
-                "href" : "product/",
-                "name" : "Ürün Listesi"
-            },
-            {
                 "href" : "product/addProduct",
                 "name" : "Ürün Ekle"
+            },
+            {
+                "href" : "product/",
+                "name" : "Ürün Listesi"
             }
         ]
     }

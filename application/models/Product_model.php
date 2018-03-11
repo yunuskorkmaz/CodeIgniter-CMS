@@ -47,7 +47,7 @@ class Product_model extends CI_Model
     }
 
     public function get_list($query =""){
-        return $this->db->query("SELECT p.*,c.name as categoryname FROM products as p inner JOIN categorys as c on p.category= c.id order by trend DESC ")->result();
+        return $this->db->query("SELECT p.*,c.name as categoryname FROM products as p inner JOIN categorys as c on p.category= c.id order by  id DESC ,trend DESC ")->result();
     }
 
     function  editproduct($data,$id){
@@ -56,9 +56,25 @@ class Product_model extends CI_Model
 
             $image = $this->upload_image($data["image"]);
 
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = getcwd()."/upload/product/".$image["data"];
+            $config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['height']         = 250;
+            $config['master_dim']         = 'height';
+            
+            $this->load->library('image_lib', $config);
+
+            $this->image_lib->resize();
+
             if(!isset($image["error"])){
                 $data["image"] = $image["data"];
                 unlink(getcwd()."/upload/product/".$urun->image);
+
+                $ext = explode('.',$urun->image);
+                $ext = end($ext);
+                $imagename =  rtrim($urun->image,".".$ext)."_thumb.".$ext;
+                unlink(getcwd()."/upload/product/".$imagename);
             }else{
                 unset($data["image"]);
             }
@@ -83,6 +99,18 @@ class Product_model extends CI_Model
           $result = $this->upload_image($data["image"]);
 
           if(!isset($result["error"])){
+
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = getcwd()."/upload/product/".$result["data"];
+                $config['create_thumb'] = TRUE;
+                $config['maintain_ratio'] = TRUE;
+                
+                $this->load->library('image_lib', $config);
+
+               $this->image_lib->resize();
+
+
+
               $data["image"] =  $result["data"];
               $this->db->insert("products",$data);
               $result["data"] = $this->db->insert_id();

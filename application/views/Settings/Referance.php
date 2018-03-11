@@ -1,12 +1,10 @@
-<div class="block-header">
-    <h2>Kullanıcılar</h2>
-</div>
+
 <div class="row clearfix">
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header bg-blue-grey">
                 <h2>
-                    Kullanıcılar
+                    Referanslar
                 </h2>
             </div>
             <div class="body table-responsive">
@@ -14,34 +12,33 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Kullanici Adi</th>
-                        <th>İsim Soyisim</th>
-                        <th>E-Posta</th>
+                        <th>Şirket Adı</th>
+                        <th>Kategori</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-
-                    <?php foreach ($users as $item) : ?>
+                    <?php $users = array(); ?>
+                    <?php foreach ($ref as $item) : ?>
                         <tr>
                             <th scope="row"><?= $item->id ?></th>
-                            <td><?= $item->kadi; ?></td>
-                            <td><?= $item->adSoyad ?></td>
-                            <td><?= $item->eposta; ?></td>
-                            <td>
+                            <td><?= $item->name; ?></td>
+                            <td><?= $item->kategori ?></td>
+
+                            <td style="text-align: right">
 
 
-                                <a href="<?php echo base_url("user/edit/".$item->id)?>" type="button"  class="btn btn-primary waves-effect">
+                                <a href="<?php echo base_url("settings/refedit/".$item->id)?>" type="button"  class="btn btn-primary waves-effect">
                                     <i class="material-icons">edit</i>
                                     <span>Düzenle</span>
                                 </a>
 
-                                <?php if($item->id != 1): ?>
-                                <a href="<?php echo base_url("user/delete/".$item->id)?>" type="button"  class="btn btn-danger waves-effect btndelete">
-                                    <i class="material-icons">delete</i>
-                                    <span>Sil</span>
-                                </a>
-                                <?php endif; ?>
+
+                                    <a href="<?php echo base_url("settings/refdelete/".$item->id)?>" type="button"  class="btn btn-danger waves-effect btndelete">
+                                        <i class="material-icons">delete</i>
+                                        <span>Sil</span>
+                                    </a>
+
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -57,34 +54,31 @@
         <div class="card">
             <div class="header bg-blue-grey">
                 <h2>
-                    Kullanıcı Ekle
+                    Referans Ekle
                 </h2>
             </div>
             <div class="body table-responsive">
-                <form action="<?php echo base_url("user/add"); ?>" method="post">
-                    <label for="name">Adı Soyadı</label>
+                <form action="<?php echo base_url("settings/referance"); ?>" method="post">
+                    <label for="name">Şirket Adı</label>
                     <div class="form-group">
                         <div class="form-line">
                             <input type="text" name="name" class="form-control" placeholder="Ad ve Soyad Giriniz">
                         </div>
                     </div>
-                    <label for="kadi">Kullanıcı Adı</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" name="kadi" class="form-control" placeholder="Kullanıcı Adı Giriniz">
-                        </div>
-                    </div>
 
-                    <label for="email">E-Mail</label>
+
+
+                    <label for="parent">Kategori</label>
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="email" name="email" class="form-control" placeholder="Eposta Adresi Giriniz">
-                        </div>
-                    </div>
-                    <label for="pass">Şifre</label>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="password" name="pass" id="pass" class="form-control" placeholder="Şifre Giriniz Giriniz">
+                            <select required name="kategori" class="form-control">
+
+                                <?php if(!empty($category_all)):?>
+                                    <?php foreach ($category_all as $item):?>
+                                        <option value="<?= $item->id ?>"><?= $item->name ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
                         </div>
                     </div>
 

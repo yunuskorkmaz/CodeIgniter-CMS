@@ -79,7 +79,7 @@
                                         <span>Düzenle</span>
                                     </a>
 
-                                    <a href="<?php echo base_url("product/delete/$item->id")?>" type="button"  class="btn btn-danger waves-effect">
+                                    <a href="<?php echo base_url("product/delete/$item->id")?>" type="button"  class="btn btn-danger waves-effect btndelete">
                                         <i class="material-icons">delete</i>
                                         <span>Sil</span>
                                     </a>
@@ -102,6 +102,24 @@
         $('.fav').change(function () {
            window.location.href =  $(this).attr("data-url");
         });
-    })
-</script>
 
+        $('.btndelete').click(function (e) {
+            e.preventDefault();
+            swal({
+                title: "Emin misiniz?",
+                text: "Kaydın silinmesini onaylıyor musunuz?",
+                icon: "warning",
+                buttons: [
+                    "İptal","Evet"
+                ],
+                dangerMode: true
+            }).then((willDelete) => {
+                    if(willDelete){
+                        swal({icon:'success',buttons:false});
+                        window.location.href = $(this).attr("href");
+                    }
+                }
+            )
+        })
+    });
+</script>

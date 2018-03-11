@@ -8,6 +8,18 @@ class User_model extends CI_Model
         $this->load->database();
     }
 
+    function get($id){
+        return $this->db->where("id",$id)->get("users")->row();
+    }
+
+    function delete($id){
+        $this->db->delete("users",array("id" => $id));
+    }
+
+    function edit($data,$id){
+        $this->db->where("id",$id)->update("users",$data);
+    }
+
     public function GetUsers()
     {
         $query = $this->db->get("users");
