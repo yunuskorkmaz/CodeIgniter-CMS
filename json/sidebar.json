@@ -51,6 +51,16 @@
                 "name" : "Ürün Listesi"
             }
         ]
+    },
+    {
+        "icon" : "shopping_cart",
+        "name" : "Kategoriler",
+        "href" : "category"
+    },
+    {
+        "icon" : "shopping_cart",
+        "name" : "Anasayfa Ayarları",
+        "href" : "settings/mainpage"
     }
 
 ]

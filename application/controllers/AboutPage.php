@@ -10,7 +10,11 @@ class AboutPage extends CI_Controller
 {
     public $model;
 
-
+    public function __construct()
+    {
+        parent::__construct();
+        parent::SessionControl();
+    }
 
     public function Index(){
 

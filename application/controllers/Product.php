@@ -8,6 +8,13 @@
 
 class Product extends CI_Controller
 {
+   public function __construct()
+   {
+       parent::__construct();
+       parent::SessionControl();
+   }
+
+
     public function Index(){
         $this->load->model("Product_model","urun");
         $data["products"] =  $this->urun->get_list();
@@ -17,7 +24,7 @@ class Product extends CI_Controller
     public function changefav($id,$to){
         $this->load->model("Product_model","urun");
         $this->urun->changefav($id,$to);
-//        redirect($_SERVER["HTTP_REFERER"]);
+        redirect($_SERVER["HTTP_REFERER"]);
     }
     public function changetrend($id,$to){
         $this->load->model("Product_model","urun");
@@ -30,7 +37,7 @@ class Product extends CI_Controller
             $this->load->model("Product_model","urun");
             $this->urun->delete($id);
         }
-//            redirect($_SERVER["HTTP_REFERER"]);
+            redirect($_SERVER["HTTP_REFERER"]);
 
     }
 
@@ -48,7 +55,7 @@ class Product extends CI_Controller
 
                 $this->template("Product/Edit",$data);
             }else{
-//                redirect($_SERVER["HTTP_REFERER"]);
+                redirect($_SERVER["HTTP_REFERER"]);
             }
         }
     }
@@ -72,7 +79,7 @@ class Product extends CI_Controller
             $this->load->model("Product_model","urun");
 
             $data["result"] = $this->urun->editproduct($postdata,$id);
-//            redirect($_SERVER["HTTP_REFERER"]);
+            redirect($_SERVER["HTTP_REFERER"]);
         }
     }
 
@@ -118,6 +125,6 @@ class Product extends CI_Controller
             $this->kategori->add_category($data);
 
         }
-//        redirect($_SERVER["HTTP_REFERER"]);
+        redirect($_SERVER["HTTP_REFERER"]);
     }
 }

@@ -24,8 +24,39 @@
                     <?php foreach ($category_all as $item): ?>
                         <tr>
                             <td><?= $item->name ?></td>
-                            <td></td>
+                            <td style="text-align: right">
+                                <a href="<?php echo base_url("category/edit/".$item->id)?>" type="button"  class="btn btn-primary waves-effect">
+                                    <i class="material-icons">edit</i>
+                                    <span>Düzenle</span>
+                                </a>
+
+
+                                <a href="<?php echo base_url("category/delete/".$item->id)?>" type="button"  class="btn btn-danger waves-effect btndelete">
+                                    <i class="material-icons">delete</i>
+                                    <span>Sil</span>
+                                </a>
+                            </td>
                         </tr>
+                        <?php if(isset($item->subitems)): ?>
+                           <?php foreach ($item->subitems as $subitem): ?>
+                                <tr>
+                                    <td ><i class="material-icons" style="font-size: 16px">subdirectory_arrow_right</i><?= $subitem->name ?></td>
+                                    <td style="text-align: right">
+                                        <a href="<?php echo base_url("category/edit/".$subitem->id)?>" type="button"  class="btn btn-primary waves-effect">
+                                            <i class="material-icons">edit</i>
+                                            <span>Düzenle</span>
+                                        </a>
+
+
+                                        <a href="<?php echo base_url("category/delete/".$subitem->id)?>" type="button"  class="btn btn-danger waves-effect btndelete">
+                                            <i class="material-icons">delete</i>
+                                            <span>Sil</span>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif;?>
                 </tbody>

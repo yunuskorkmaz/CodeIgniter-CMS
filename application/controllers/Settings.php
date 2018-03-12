@@ -8,6 +8,11 @@
 
 class Settings extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        parent::SessionControl();
+    }
     public function Index(){
 
         $this->template("Settings/Index");
@@ -192,7 +197,18 @@ class Settings extends CI_Controller
         $data = $this->ayar->getmainpage();
         $this->template("Settings/MainPageSettings",$data);
     }
-
+    public function editBanner(){
+        if($_POST){
+            $data = array(
+                "bannertitle" => trim($_POST["bannertitle"]),
+                "bannerword1" => trim($_POST["word1"]),
+                "bannerword2" => trim($_POST["word2"])
+            );
+            $this->load->model("Settings_model","ayar");
+            $this->ayar->editBanner($data);
+        }
+        redirect($_SERVER["HTTP_REFERER"]);
+    }
     public  function editTrendText(){
         if($_POST){
             $data = array(

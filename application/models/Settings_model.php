@@ -222,7 +222,10 @@ class Settings_model extends CI_Model
         $getdata = array(
             "trendtitle" => "trendtitle",
             "trendtext" => "trendtext",
-            "footertext" => "footertext"
+            "footertext" => "footertext",
+            "bannertitle" =>  "bannertitle",
+            "bannerword1" =>  "bannerword1",
+            "bannerword2" => "bannerword2"
         );
 
         $result = array();
@@ -232,6 +235,13 @@ class Settings_model extends CI_Model
         }
         return $result;
     }
+
+    public function editBanner($data){
+        foreach ($data as $key => $value){
+            $this->db->set("value",$value)->where("component",$key)->update("settings");
+        }
+    }
+
     function editFooter($data){
         foreach ($data as $key => $value){
             $this->db->set("value",$value)->where("component",$key)->update("settings");

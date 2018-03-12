@@ -89,13 +89,17 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
-        $this->load->model('Auth_model','auth');
-
-        if(!$this->auth->CheckAuth()){
-            redirect('/welcome/login/');
-        }
 	}
 
+	public function SessionControl(){
+        if(!isset($_SESSION["user_id"]) or empty($_SESSION["user_id"])){
+            $this->load->model('Auth_model','auth');
+
+            if(!$this->auth->CheckAuth()){
+                redirect('/welcome/login/');
+            }
+        }
+    }
 	// --------------------------------------------------------------------
 
 	/**
